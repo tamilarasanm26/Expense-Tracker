@@ -1,32 +1,96 @@
- body {
+/* General body */
+body {
   font-family: 'Poppins', sans-serif;
   background-color: #f7f9fc;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow-x: hidden;
 }
 
+/* Header */
 header {
-  margin-top: 5px;
-  width: 34%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   background-color: #007bff;
   color: white;
-  text-align: center;
-   border-radius: 15px;
-  padding: 0.5rem;
-  font-size: 1.8rem;
-  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 20px;
+  box-sizing: border-box;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Main layout wrapper */
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; /* space between sidebar and container */
+  padding: 20px;
+  flex-wrap: wrap; /* for small screens */
+}
+
+/* Sidebar: Income & Expense */
+.side-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary-card {
+  width: 150px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f1f5ff;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.summary-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.summary-card p {
+  margin: 5px 0 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.income-card p {
+  color: green;
+}
+
+.expense-card p {
+  color: red;
+}
+
+/* Container */
 .container {
   background: white;
-  width: 90%;
-  max-width: 400px;
-  margin-top: 10px;
+  width: 400px;
   padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 
 .balance-section {
@@ -47,6 +111,7 @@ input {
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -67,6 +132,7 @@ input {
 .list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .list li {
@@ -74,7 +140,44 @@ input {
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.edit-btn:hover {
+  color: blue;
+}
+
+.delete-btn:hover {
+  color: red;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side-summary {
+    flex-direction: row;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
 }
