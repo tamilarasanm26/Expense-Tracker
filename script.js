@@ -1,3 +1,4 @@
+// ====== Toggle Form Visibility ======
 const showFormBtn = document.getElementById('showFormBtn');
 const formSection = document.getElementById('formSection');
 
@@ -11,6 +12,8 @@ showFormBtn.addEventListener('click', () => {
   }
 });
 
+
+
 const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
@@ -21,6 +24,7 @@ const datetime = document.getElementById('datetime');
 
 let transactions = [];
 
+// Date & Time Updater 
 function getCurrentDateTime() {
   const now = new Date();
   const date = now.toLocaleDateString('en-IN');
@@ -29,11 +33,11 @@ function getCurrentDateTime() {
 }
 
 datetime.value = getCurrentDateTime();
-
 setInterval(() => {
   datetime.value = getCurrentDateTime();
 }, 1000);
 
+//  Form Handler
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -63,6 +67,7 @@ form.addEventListener('submit', (e) => {
   amount.value = '';
 });
 
+// Render Each Transaction
 function renderTransaction(transaction) {
   const li = document.createElement('li');
   li.setAttribute('data-id', transaction.id);
@@ -81,6 +86,7 @@ function renderTransaction(transaction) {
   list.appendChild(li);
 }
 
+// Update Balance & Chart
 function updateBalance() {
   let income = 0, expense = 0;
 
@@ -96,8 +102,12 @@ function updateBalance() {
   document.getElementById('expense').innerText = `₹${expense.toFixed(2)}`;
 
   balance.style.color = totalBalance < 0 ? 'red' : 'green';
+
+  //  Update bar chart
+  renderChart(income, expense);
 }
 
+//  Edit & Delete Transactions 
 list.addEventListener('click', (e) => {
   const li = e.target.closest('li');
   if (!li) return;
@@ -127,3 +137,47 @@ list.addEventListener('click', (e) => {
     updateBalance();
   }
 });
+
+// ECharts Setup
+const chartDom = document.getElementById('chart');
+let myChart = echarts.init(chartDom);
+
+function renderChart(income, expense) {
+  const option = {
+    title: {
+      text: 'Income vs Expense',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    xAxis: {
+      type: 'category',
+      data: ['Income', 'Expense']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: [income, expense],
+        type: 'bar',
+        barWidth: '40%',
+        itemStyle: {
+          color: (params) => (params.dataIndex === 0 ? '#4CAF50' : '#F44336')
+        },
+        label: {
+          show: true,
+          position: 'top',
+          formatter: '₹{c}'
+        }
+      }
+    ],
+    animationDuration: 800
+  };
+
+  myChart.setOption(option);
+}
+
+//  Initialize Chart on Load 
+renderChart(0, 0);

@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
   <header>
     <h2>Expense Tracker</h2>
     <div class="user-info">
@@ -16,9 +15,14 @@
     </div>
   </header>
 
-  <!-- Main layout wrapper -->
   <div class="main-wrapper">
-    <!-- Income & Expense Sidebar -->
+    <!--  Chart Section -->
+    <div class="chart-container">
+      <h3>Expense & Income Chart</h3>
+      <div id="chart" style="width: 300px; height: 250px;"></div>
+    </div>
+
+    <!--  Summary Section -->
     <div class="side-summary">
       <div class="summary-card income-card">
         <h4>Income</h4>
@@ -30,23 +34,20 @@
       </div>
     </div>
 
-    <!-- Main container -->
+    <!--  Form  -->
     <div class="container">
       <div class="balance-section">
         <h4>Your Balance</h4>
         <h1 id="balance">₹0</h1>
       </div>
 
-      <!-- Button to show form -->
       <button id="showFormBtn" class="btn main-btn">+ Add Transaction</button>
 
-      <!-- Hidden form section -->
       <div class="form-section" id="formSection" style="display: none;">
         <h3>Add Transaction</h3>
         <form id="form">
-
           <div class="form-control">
-            <label for="type">Type <span class="required">*</span></label>
+            <label for="type">Type</label>
             <select name="type" id="type" required>
               <option value="income">Income</option>
               <option value="expense">Expense</option>
@@ -54,13 +55,13 @@
           </div>
 
           <div class="form-control">
-            <label for="text">Description <span class="required">*</span></label>
+            <label for="text">Description</label>
             <input type="text" id="text" placeholder="Enter transaction name" required>
           </div>
 
           <div class="form-control">
-            <label for="amount">Amount <span class="required">*</span></label>
-            <input type="number" id="amount" placeholder="Enter amount" min="1" step="0.01" required>
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
           </div>
 
           <div class="form-control">
@@ -79,6 +80,10 @@
     </div>
   </div>
 
+  <!--  ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+  <!--  JS -->
   <script src="script.js"></script>
 </body>
 </html>
