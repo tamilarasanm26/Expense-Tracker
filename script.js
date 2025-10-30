@@ -76,10 +76,11 @@ function renderTransaction(transaction) {
     <div>
       ${transaction.transactionType.toUpperCase()} - ${transaction.desc.toUpperCase()}<br>
       <small>${transaction.timeStamp}</small>
+       <span class="amount-text">${transaction.transactionType === 'income' ? '+' : '-'}₹${transaction.amt.toFixed(2)}</span>
     </div>
-    <span class="amount-text">${transaction.transactionType === 'income' ? '+' : '-'}₹${transaction.amt.toFixed(2)}</span>
+   
     <div class="actions">
-      <button class="edit-btn">✏️</button>
+      <button class="edit-btn">✏️</button> 
       <button class="delete-btn">🗑️</button>
     </div>
   `;
